@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsAgency implements NewsAgencySubject{
@@ -26,9 +27,14 @@ public class NewsAgency implements NewsAgencySubject{
         this.subscriberList = subscriberList;
     }
 
+    public void sentNews(){
+        System.out.println("(" + getNewsCategory() + ")\n" +getNewsContent());
+        this.notifySubscriber();
+    }
+
     private String newsCategory;
     private String newsContent;
-    private List<Subscriber> subscriberList;
+    private List<Subscriber> subscriberList = new ArrayList<>();
 
     @Override
     public void subscribe(Subscriber subscriber) {
@@ -41,12 +47,11 @@ public class NewsAgency implements NewsAgencySubject{
     }
 
     @Override
-    public String notifySubscriber() {
-        String output = new String();
+    public void notifySubscriber() {
+        System.out.println("-Notifying subscribers-");
         for(Subscriber subscriber : subscriberList){
-            output += "Notifying: " + subscriber.getSubscriberName() + "\n";
-            output += "-----" + newsCategory + "----- " +  "\n" + newsContent;
+            subscriber.notifySubscribers(this);
         }
-        return output;
+        System.out.println("-Subscribers notified-\n");
     }
 }

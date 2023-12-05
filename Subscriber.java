@@ -9,6 +9,6 @@ public class Subscriber implements SubscriberObserver{
         return subscriberName;
     }
     @Override
-    public void notifySubscriber(NewsAgency newsAgency) {
+    public void notifySubscribers(NewsAgency newsAgency) {
         System.out.println("Notifying: " + getSubscriberName());}
 }
